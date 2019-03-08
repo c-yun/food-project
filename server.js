@@ -18,10 +18,12 @@ app.use(require('morgan')('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
 app.use(helmet());
+app.use(express.static("public"));
+
 
 const sessionStore = new SequelizeStore({
   db: db.sequelize,
-  expiration: 30* 60 * 1000
+  expiration: 30 * 60 * 1000
 });
 
 app.use(session({
@@ -46,32 +48,28 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/', function(req,res) {
-  var qs = {
-      s: 'teriyaki',
-      apikey: process.env.API_KEY
-  };
-
-  request({
-  url: 'https://api.edamam.com/search',
-  qs: qs
-  }, function(error, response, body) {
-      if (!error && response.statusCode === 200) {
-          var results = JSON.parse(body).Search;
-          res.render("index");
-      }
-  });
-});
-
 app.get('/', function(req, res) {
-    res.render('index');
-  });
+  res.render('index');
+});
 
 app.get('/profile', isLoggedIn, function(req, res) {
   res.render('profile');
 });
 
+// app.get('/results', function(req, res) {
+//   let edamamUrl = `https://api.edamam.com/search?q=${req.query.search}&app_id=${process.env.APP_ID}&app_key=${process.env.API_KEY}&from=0&to=9`;
+//   request(edamamUrl, function(err, response, body) {
+//     let favorite = JSON.parse(body).hits;
+//     res.render('index', {favorite});
+//     // res.json(recipes)
+//   });
+// });
+
 app.use('/auth', require('./controllers/auth'));
+app.use('/favorite', require('./controllers/favorite'));
+app.use('/results', require('./controllers/results'));
+app.use('/search', require('./controllers/search'));
+
 
 var server = app.listen(process.env.PORT || 3000);
 

@@ -1,0 +1,17 @@
+<h2 class="text-center">Search Results</h2>
+
+
+<% hits.forEach(function(hit) { %>
+    <div class="well">
+    <h2><%= hit.recipe.label %></h2>
+    <p><%= hit.recipe.dietLabels %></p>
+    <p>Number of Servings: <%= hit.recipe.yield %></p>
+    <p>Calories: <%= Math.floor(hit.recipe.calories) %></p>
+    <form method="POST" action="/favorites">
+        <input hidden type="text" name="name" value="<%= hit.recipe.label %>">
+        <img src="<%= hit.recipe.image %>"><br>
+        <button class="btn btn-primary" type="submit"><i class="fas fa-utensils"></i> Fork It</button>
+    </form>
+    </div>
+<% }); %>
+</div>
