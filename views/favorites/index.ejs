@@ -1,0 +1,17 @@
+<div class="container">
+        <h1 class="text-center">Favorites</h1>
+        <p class="text-center">
+            <a href="/">HOME</a>
+        </p>
+    
+    <div class="favorites-box">
+        <% favorites.forEach(function(favorite) { %>
+            <h2><%= favorite.title %></h2>
+                <%= favorite.userId %>
+            <form method="POST" action="/favorites">
+                <input hidden type="text" name="title" value="<%= favorite.title %>">
+                <input hidden type="text" name="id" value="<%= favorite.userId %>">
+                <button class="btn btn-primary" type="submit">Remove</button>
+            </form>
+        <% }); %>
+    </div>
