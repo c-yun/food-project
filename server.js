@@ -1,6 +1,7 @@
 const express = require('express');
 const request = require('request');
 const ejsLayouts = require('express-ejs-layouts');
+const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const passport = require('./config/passportConfig');
 const session = require('express-session');
@@ -19,7 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
 app.use(helmet());
 app.use(express.static("public"));
-
+app.use(methodOverride('_method'));
 
 const sessionStore = new SequelizeStore({
   db: db.sequelize,
@@ -34,7 +35,7 @@ app.use(session({
 }));
 
 // Use this line once to set up the store table
-sessionStore.sync();
+// sessionStore.sync();
 
 // This must come after the session and before passport
 app.use(flash());
@@ -60,6 +61,7 @@ app.use('/auth', require('./controllers/auth'));
 app.use('/favorites', require('./controllers/favorite'));
 app.use('/results', require('./controllers/results'));
 app.use('/search', require('./controllers/search'));
+app.use('/comment', require('./controllers/comment'));
 
 
 var server = app.listen(process.env.PORT || 3000);

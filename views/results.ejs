@@ -1,9 +1,10 @@
 <h2 class="text-center">Search Results</h2>
 
 
-<% hits.forEach(function(hit) { %>
-
-    <div class="well">
+<div class="well">
+    
+    <% hits.forEach(function(hit) { %>
+        <a href="/favorites/<%= hit.recipe.label %>/edit"></a>
 
     <h2><%= hit.recipe.label %></h2>
     <p><%= hit.recipe.dietLabels %></p>
@@ -13,9 +14,9 @@
     <form method="POST" action="/favorites">
         <input hidden type="text" name="title" value="<%= hit.recipe.label %>">
         <img src="<%= hit.recipe.image %>"><br>
-        <button class="btn btn-primary" type="submit"><i class="fas fa-utensils"></i> Fork It</button>
+        <button class="btn btn-primary" type="submit"><i class="fas fa-utensils"></i> Add to Favorites</button>
+        <button class="btn btn-primary" type="submit"><a id="recipe" href="<%= hit.recipe.url %>">Recipe</button>
     </form>
-
+    
+    <% }); %>
     </div>
-<% }); %>
-</div>

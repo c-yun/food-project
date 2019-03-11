@@ -14,14 +14,6 @@ router.get('/', function(req,res) {
     });
 });
 
-// router.post("/", function(req,res) {
-//     db.favorite.create({
-//       name: req.body.name
-//     }).then(function(favorites) {
-//       res.redirect("/favorite");
-//     });
-//   });
-
 
 
 
