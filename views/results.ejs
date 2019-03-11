@@ -1,4 +1,4 @@
-<h2 class="text-center">Search Results</h2>
+<h2 class="text-center">Recipes</h2>
 
 
 <div class="well">
@@ -10,12 +10,13 @@
     <p><%= hit.recipe.dietLabels %></p>
     <p>Number of Servings: <%= hit.recipe.yield %></p>
     <p>Calories: <%= Math.floor(hit.recipe.calories) %></p>
+    <p>Source: <%= hit.recipe.source %></p>
 
     <form method="POST" action="/favorites">
         <input hidden type="text" name="title" value="<%= hit.recipe.label %>">
-        <img src="<%= hit.recipe.image %>"><br>
+        <img src="<%= hit.recipe.image %>"><br><br>
         <button class="btn btn-primary" type="submit"><i class="fas fa-utensils"></i> Add to Favorites</button>
-        <button class="btn btn-primary" type="submit"><a id="recipe" href="<%= hit.recipe.url %>">Recipe</button>
+        <button class="btn btn-primary" type="submit"><a id="recipe" href="<%= hit.recipe.url %>">View Recipe</button>
     </form>
     
     <% }); %>

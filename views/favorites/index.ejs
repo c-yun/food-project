@@ -7,11 +7,20 @@
     
 <div class="favorites-box">
 <% favorites.forEach(function(favorite) { %>
-    <h2><a href="/favorites/<%= favorite.id %>"><%= favorite.title %></a></h2>
+    <h2><%= favorite.title %></h2>
+    <p><%= favorite.notes %></p>
     <%= favorite.userId %>
     <form method="POST" action="/favorites/<%= favorite.id %>?_method=DELETE">
     <input hidden type="text" name="title" value="delete">
     <button class="btn btn-primary" type="submit">REMOVE</button>
-    </form>
-    <% }); %>
+</form>
+
+<form method="POST" action="/favorites/<%= favorite.id %>?_method=PUT">
+    <input hidden type="submit" value ="update"> 
+    <a button class="btn btn-primary" type="submit" href="/favorites/<%= favorite.id %>/edit">EDIT</button></a>
+</form>
+
+<% }); %>
 </div>
+
+

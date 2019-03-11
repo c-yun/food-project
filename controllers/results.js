@@ -10,7 +10,6 @@ router.get('/', function(req,res) {
     request(recipeUrl, function(err, response, body) {
         let hits = JSON.parse(body).hits;
         res.render('results', {hits});
-        // res.json(hits);
     });
 });
 

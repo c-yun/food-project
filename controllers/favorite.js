@@ -16,31 +16,43 @@ router.get('/:id', function(req,res) {
     });
 });
 
+router.post("/", function(req,res) {
+    db.favorite.create({
+        title: req.body.title,
+        // edamamUrl: req.body.edamamUrl,
+        // userId: req.body.id,
+    })
+    .then(function(favorite) {
+        res.redirect("/favorites");
+    });
+});
+
 router.get('/:id/edit', function(req,res) {
     db.favorite.findById(parseInt(req.params.id))
     .then(function(favorites) {
-        res.render('favorites/edit', {favorites});
+    res.render('favorites/edit', {favorites});
     });
 });
 
-router.post("/", function(req,res) {
-    db.favorite.create({
-    title: req.body.title,
-    edamamUrl: req.body.edamamUrl,
-    userId: req.body.id,
-    notes: req.body.notes
-    })
-    .then(function(favorite) {
-    res.redirect("/favorites");
-    });
-});
+// router.put('/:id', function(req,res) {
+//     db.favorite.update({
+//         title: req.body.title,
+//     }, { where: {id: parseInt(req.user.id)}})
+//     .then(function(favorite) {
+//         res.redirect('/favorites/');
+//     });
+// });
 
-router.put('/:id', function(req,res) {
-    db.favorite.update({
-        title: req.body.title,
-    }, { where: {id: req.user.id}})
-    .then(function() {
-        res.redirect('/favorites/');
+router.put("/:id", function(req, res) {
+    db.favorite.findById(req.user.id).then(function(favorite) {
+        db.favorite.update({
+            title: req.body.title,
+            notes: req.body.notes
+        }, {
+        where: {id: parseInt(req.params.id)}
+        }).then(function(favorite) {
+        res.redirect('/favorites/')
+        });
     });
 });
 

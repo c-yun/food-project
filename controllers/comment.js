@@ -10,13 +10,19 @@ router.get('/', function(req,res) {
     });
 });
 
+router.get('/:id', function(req,res) {
+    db.favorite.findById(req.params.id).then(function(favorite) {
+        res.render('favorites/show', {favorite});
+    });
+});
+
 router.post('/:id', function(req,res) {
     db.comment.create({
         content: req.body.content,
         favoriteId: req.body.favoriteId
     })
     .then(function(comment) {
-        res.redirect('favorites/:id');
+        res.redirect('favorites/:id', {comment});
     });
 });
 

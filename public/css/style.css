@@ -74,6 +74,7 @@ header {
     background: transparent;
     color: whitesmoke;
     border-bottom: 1px solid whitesmoke;
+    box-shadow: none;
 }
 
 #search-box:focus {outline:0;}
@@ -83,7 +84,7 @@ header {
 }
 
 .home {
-    margin: 125px 0 40px 150px;
+    margin: 125px 0 40px 120px;
     color: whitesmoke;
 }
 
@@ -91,10 +92,9 @@ header {
     font-family: 'Pacifico', cursive;
 }
 
-.fas {
+#fas-search {
     border: none;
     border-color: transparent;
     color: gray;
 }
-
 

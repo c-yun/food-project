@@ -1,12 +1,14 @@
 
-<form method="POST" action="/favorites/<%= favorites.id %>?_method=PUT">
-    <input type="text" name="title" value="<%= favorites.title %>">
-    <!-- <input type="submit" value="update"> -->
-    <button class="btn btn-primary" type="submit">UPDATE</button>
-    <div>
-        <label for="notes">Notes</label> <br>
-        <input type="text" id="notes" name="usernotes">
-        <button class="btn btn-primary" type="submit">Add Notes</button>
-    </div>
 
+<body>
+
+<h2>Notes</h2>
+<form method="POST" action="/favorites/<%= favorites.id %>?_method=PUT">
+    <textarea name="notes" cols="60" rows="15" placeholder="Notes..."></textarea><br>
+    <input type="submit" value="ADD NOTES">
 </form>
+
+</body>
+
+
+
