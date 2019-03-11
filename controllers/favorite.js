@@ -34,15 +34,6 @@ router.get('/:id/edit', function(req,res) {
     });
 });
 
-// router.put('/:id', function(req,res) {
-//     db.favorite.update({
-//         title: req.body.title,
-//     }, { where: {id: parseInt(req.user.id)}})
-//     .then(function(favorite) {
-//         res.redirect('/favorites/');
-//     });
-// });
-
 router.put("/:id", function(req, res) {
     db.favorite.findById(req.user.id).then(function(favorite) {
         db.favorite.update({

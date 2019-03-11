@@ -1,26 +1,32 @@
 <div class="container">
         <h2 class="text-center">Favorites</h2>
         <p class="text-center">
-            <a href="/">HOME</a>
         </p>
 </div>
-    
+
 <div class="favorites-box">
 <% favorites.forEach(function(favorite) { %>
-    <h2><%= favorite.title %></h2>
+    <h3><%= favorite.title %></h3>
     <p><%= favorite.notes %></p>
     <%= favorite.userId %>
-    <form method="POST" action="/favorites/<%= favorite.id %>?_method=DELETE">
-    <input hidden type="text" name="title" value="delete">
-    <button class="btn btn-primary" type="submit">REMOVE</button>
-</form>
 
-<form method="POST" action="/favorites/<%= favorite.id %>?_method=PUT">
-    <input hidden type="submit" value ="update"> 
-    <a button class="btn btn-primary" type="submit" href="/favorites/<%= favorite.id %>/edit">EDIT</button></a>
-</form>
+    <form method="POST" action="/favorites/<%= favorite.id %>?_method=DELETE">
+        <input hidden type="text" name="title" value="delete">
+        <button class="btn btn-primary" type="submit" id="fav-btn">REMOVE</button>
+        <!-- <a href="/favorites/<%= favorite.id %>" type="submit" value="delete">REMOVE</a> -->
+    </form>
+
+    <form method="POST" action="/favorites/<%= favorite.id %>?_method=PUT">
+        <input hidden type="submit" value ="update"> 
+        <a button class="btn btn-primary" type="submit" id="fav-btn" href="/favorites/<%= favorite.id %>/edit">EDIT</button></a>
+        <!-- <a href="/favorites/<%= favorite.id %>/edit">EDIT</a> -->
+    </form>
 
 <% }); %>
 </div>
+
+
+
+
 
 

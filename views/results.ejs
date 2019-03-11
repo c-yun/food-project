@@ -6,11 +6,11 @@
     <% hits.forEach(function(hit) { %>
         <a href="/favorites/<%= hit.recipe.label %>/edit"></a>
 
-    <h2><%= hit.recipe.label %></h2>
+    <h3><%= hit.recipe.label %></h3>
     <p><%= hit.recipe.dietLabels %></p>
     <p>Number of Servings: <%= hit.recipe.yield %></p>
     <p>Calories: <%= Math.floor(hit.recipe.calories) %></p>
-    <p>Source: <%= hit.recipe.source %></p>
+    <p>Source: <%= hit.recipe.source %></p><br>
 
     <form method="POST" action="/favorites">
         <input hidden type="text" name="title" value="<%= hit.recipe.label %>">

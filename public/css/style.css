@@ -84,8 +84,9 @@ header {
 }
 
 .home {
-    margin: 125px 0 40px 120px;
+    margin: 150px 0 40px 120px;
     color: whitesmoke;
+    font-size: 16px;
 }
 
 .home-title {
@@ -97,4 +98,14 @@ header {
     border-color: transparent;
     color: gray;
 }
+
+.search-page {
+    text-align: center;
+}
+
+#fav-btn {
+    font-size: 12px;
+}
+
+
 
